@@ -1,12 +1,11 @@
-'use client';
-import { useState } from 'react';
-import SearchBar from './SearchBar';
-import EventsList from './EventsList';
+"use client";
+import { useState } from "react";
+import SearchBar from "./SearchBar";
+import EventsList from "./EventsList";
 
 type Event = {
   id: string;
   name: string;
-  location: string;
   dates: { start: { localDate: string } };
   images?: { url: string }[];
   url: string;
@@ -15,15 +14,15 @@ type Event = {
 export default function TicketSearch() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleSearch = async (query: string) => {
     setLoading(true);
-    setError('');
+    setError("");
     try {
       const res = await fetch(
         `/api/events?keyword=${encodeURIComponent(query)}`
-      );      
+      );
       const data = await res.json();
       if (data.error) {
         setError(data.error);
@@ -32,7 +31,7 @@ export default function TicketSearch() {
         setEvents(data._embedded?.events || []);
       }
     } catch (err) {
-      setError('Failed to fetch events.');
+      setError("Failed to fetch events.");
       setEvents([]);
     } finally {
       setLoading(false);

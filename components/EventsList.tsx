@@ -1,4 +1,4 @@
-'use client';
+"use client";
 type Event = {
   id: string;
   name: string;
@@ -36,6 +36,9 @@ export default function EventsList({ events }: Props) {
           )}
           <div className="p-4">
             <h2 className="font-bold text-lg mb-2">{event.name}</h2>
+            <p className="text-gray-700 dark:text-gray-300">
+              { event._embedded?.venues[0]?.name || "Unknown Venue" }
+            </p>
             <p className="text-gray-700 dark:text-gray-300">
               {event.dates.start.localDate}
             </p>
