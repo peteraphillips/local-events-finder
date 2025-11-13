@@ -13,7 +13,6 @@ type Props = {
 };
 
 export default function EventsList({ events }: Props) {
-
   if (events.length === 0) {
     return <p className="text-gray-700 text-center">No events found.</p>;
   }
@@ -39,7 +38,7 @@ export default function EventsList({ events }: Props) {
           <div className="p-4">
             <h2 className="font-bold text-lg mb-2">{event.name}</h2>
             <p className="text-gray-700 dark:text-gray-300">
-              { event.venue || "Unknown Location" }
+              {event.venue || "Unknown Location"}
             </p>
             <p className="text-gray-700 dark:text-gray-300">
               {event.dates.start.localDate}
