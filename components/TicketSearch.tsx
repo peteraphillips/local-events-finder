@@ -6,6 +6,7 @@ import EventsList from "./EventsList";
 type Event = {
   id: string;
   name: string;
+  venue: string;
   dates: { start: { localDate: string } };
   images?: { url: string }[];
   url: string;
@@ -23,12 +24,13 @@ export default function TicketSearch() {
       const res = await fetch(
         `/api/events?keyword=${encodeURIComponent(query)}`
       );
+
       const data = await res.json();
       if (data.error) {
         setError(data.error);
         setEvents([]);
       } else {
-        setEvents(data._embedded?.events || []);
+        setEvents(data || []);
       }
     } catch (err) {
       setError("Failed to fetch events.");
